@@ -16,8 +16,19 @@ export class TrialService {
   	}
 
   	getTrials(): Promise<Trial[]>{
-
 		var result = this.http.get(this.apiUrl)
+           .toPromise()
+           .then(response => response.json().results) 
+           .catch(this.handleError);
+        // console.log(result);
+        return result;
+	}
+
+	getNewTrials(offsetNumber): Promise<Trial[]>{
+		let params: URLSearchParams = new URLSearchParams();
+		params.set('offset', offsetNumber);
+
+		var result = this.http.get(this.apiUrl, {search:params})
            .toPromise()
            .then(response => response.json().results) 
            .catch(this.handleError);

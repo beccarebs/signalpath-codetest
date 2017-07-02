@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import 'rxjs/add/operator/map';
+
+import { Trial } from './trial';
+import { TrialService } from './trial.service';
 
 @Component({
   selector: 'app-root',
@@ -9,23 +10,18 @@ import 'rxjs/add/operator/map';
 })
 export class AppComponent {
   title = 'Becca Does Angular';
-  // private apiUrl = 'http://api.lillycoi.com/v1/trials?limit=100';
-  // data: any = {};
 
-  // constructor(private http: Http) {
-  // 	this.getTrials();
-  // 	this.getData();
-  // }
+  trials: Trial[];
 
-  // getData() {
-  // 	return this.http.get(this.apiUrl)
-  // 		.map((res: Response) => res.json())
-  // }
+  constructor(
+    private trialService: TrialService
+  ){ }
 
-  // getTrials() {
-  // 	this.getData().subscribe(data => {
-  // 		console.log(data);
-  // 		this.data = data;
-  // 	})
-  // }
+  getNewTrials(): void{
+    this.trialService
+      .getTrials()
+      .then(trials => this.trials = trials);
+  }
+
+  //TODO: Add click Functionality to increment the offset and call get new trials above
 }
