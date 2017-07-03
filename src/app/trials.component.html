@@ -1,0 +1,16 @@
+<table class="table table-bordered">
+	<thead>
+		<tr>
+		  <th><strong>Brief Title</strong></th>
+		  <th><strong>Lead Sponsor</strong></th>
+		  <th><strong>Completion Date</strong></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let trial of trials">
+			<td><a href="http://www.clinicaltrials.gov/show/{{trial.id}}" target="_blank">{{trial.brief_title}}</a></td>
+			<td>{{trial.sponsors.lead_sponsor.agency}}</td>
+			<td><span *ngIf="trial.completion_date != undefined">{{trial.completion_date.value}}</span></td>
+		</tr>
+	</tbody>
+</table>
