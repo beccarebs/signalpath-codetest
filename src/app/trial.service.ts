@@ -27,7 +27,7 @@ export class TrialService {
 	getNewTrials(offsetNumber): Promise<Trial[]>{
 		//API URL gets an offset param
 		var newApiUrl = this.apiUrl + '&offset=' + offsetNumber;
-		console.log('newapi: ' + newApiUrl);
+		// console.log('newapi: ' + newApiUrl);
 
 		var result = this.http.get(newApiUrl)
            .toPromise()
