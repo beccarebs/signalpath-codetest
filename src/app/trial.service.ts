@@ -12,13 +12,13 @@ export class TrialService {
   	private apiUrl = 'http://api.lillycoi.com/v1/trials?limit=100';  // URL to web api
 
   	constructor(private http: Http){
-  		
+
   	}
 
   	getTrials(): Promise<Trial[]>{
 		var result = this.http.get(this.apiUrl)
            .toPromise()
-           .then(response => response.json().results) 
+           .then(response => response.json().results)
            .catch(this.handleError);
         // console.log(result);
         return result;
@@ -27,11 +27,11 @@ export class TrialService {
 	getNewTrials(offsetNumber): Promise<Trial[]>{
 		//API URL gets an offset param
 		var newApiUrl = this.apiUrl + '&offset=' + offsetNumber;
-		// console.log('newapi: ' + newApiUrl);
+		console.log('newapi: ' + newApiUrl);
 
 		var result = this.http.get(newApiUrl)
            .toPromise()
-           .then(response => response.json().results) 
+           .then(response => response.json().results)
            .catch(this.handleError);
         // console.log(result);
         return result;

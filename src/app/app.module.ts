@@ -22,7 +22,7 @@ import { DemoPaginationPagerComponent } from './pager.component';
     FormsModule,
     RouterModule.forRoot([
       {
-        path: 'trials/:index',
+        path: 'trials',
         component: TrialsComponent
       }
     ]),

@@ -4,7 +4,7 @@ import { Trial } from './trial';
 import { TrialService } from './trial.service';
 
 import {Router} from '@angular/router';
- 
+
 @Component({
   selector: 'pagination-pager',
   templateUrl: './pager.component.html'
@@ -13,13 +13,16 @@ export class DemoPaginationPagerComponent {
 	trials: Trial[];
 
 	constructor(
-		private trialService: TrialService
+		private trialService: TrialService,
+    private router: Router
 	){ }
 
 	getNewTrials(offset, pageID): void{
 	    this.trialService
 	      .getNewTrials(offset)
 	      .then(trials => this.trials = trials);
+
+      this.router.navigate(['/trials'], { queryParams: { page: pageID } });
 	}
 
   	public totalItems:number = 100000;
@@ -33,8 +36,8 @@ export class DemoPaginationPagerComponent {
 		var pageID = event.page;
 		var offset = pageID * 100-100;
 		// console.log('offset: ' + offset);
-		
+
 		this.getNewTrials(offset, pageID);
-		
+
 	}
 }
