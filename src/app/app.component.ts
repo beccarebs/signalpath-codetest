@@ -17,11 +17,5 @@ export class AppComponent {
     private trialService: TrialService
   ){ }
 
-  getNewTrials(): void{
-    this.trialService
-      .getTrials()
-      .then(trials => this.trials = trials);
-  }
 
-  //TODO: Add click Functionality to increment the offset and call get new trials above
 }

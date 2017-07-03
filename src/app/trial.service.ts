@@ -25,10 +25,11 @@ export class TrialService {
 	}
 
 	getNewTrials(offsetNumber): Promise<Trial[]>{
-		let params: URLSearchParams = new URLSearchParams();
-		params.set('offset', offsetNumber);
+		//API URL gets an offset param
+		var newApiUrl = this.apiUrl + '&offset=' + offsetNumber;
+		// console.log('newapi: ' + newApiUrl);
 
-		var result = this.http.get(this.apiUrl, {search:params})
+		var result = this.http.get(newApiUrl)
            .toPromise()
            .then(response => response.json().results) 
            .catch(this.handleError);
